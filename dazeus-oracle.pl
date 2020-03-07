@@ -35,6 +35,8 @@ $dazeus->subscribe_command("oracle" => sub {
 	my ($self, $network, $sender, $channel, $command, $arg) = @_;
 	if (!defined($arg) || $arg eq "") {
 		reply("You'll have to give the oracle something to work with, " . $sender . ".", $network, $sender, $channel);
+	} elsif ($arg =~ m/\?$/) {
+		reply(oracle($arg) . "% yes.", $network, $sender, $channel);
 	} else {
 		reply("That is " . oracle($arg) . "% true.", $network, $sender, $channel);
 	}
